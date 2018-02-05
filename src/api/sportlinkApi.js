@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const baseUrl = 'https://data.sportlink.com/';
-const clientId = 'WuJeuY15Qe';
 
 class SportlinkApi {
 
