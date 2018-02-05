@@ -11,13 +11,11 @@
     "test": "mocha --reporter progress tools/testSetup.js \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch"
   },
-  "author": "Cory House",
-  "license": "MIT",
+  "author": "Tim Bakkum",
   "dependencies": {
     "axios": "^0.17.1",
     "babel-polyfill": "6.8.0",
     "bootstrap": "3.3.6",
-    "jquery": "2.2.3",
     "loaders.css": "^0.1.2",
     "react": "15.3",
     "react-dom": "15.3",
@@ -70,9 +68,5 @@
     "webpack": "1.13.0",
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.10.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/coryhouse/pluralsight-redux-starter"
   }
 }
