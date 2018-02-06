@@ -4,8 +4,13 @@ import Loader from 'react-loaders';
 
 const TeamSchedule = ({ schedule, loading }) => {
   if(loading > 0 ) {
+    const style = {
+      backgroundColor: 'blue',
+      margin: '0 auto',
+      height: '100px'
+    };
     return (
-      <Loader active />
+      <Loader active style={style} />
     );
   }
   if(schedule.length && loading <= 0) {

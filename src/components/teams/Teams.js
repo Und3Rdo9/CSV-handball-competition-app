@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 //import TeamListSection from './TeamListSection';
 import TeamList from './TeamList';
 import * as teamsActions from './../../actions/teamsActions';
+import * as uiActions from './../../actions/uiActions';
 
 class Teams extends React.Component {
   constructor(props, context) {
@@ -49,7 +50,8 @@ class Teams extends React.Component {
   }
 
   handleTeamSelect(changeEvent) {
-    this.props.actions.selectTeam(changeEvent.target.value);
+    const values = JSON.parse(changeEvent.target.value);
+    this.props.actions.selectTeam(values.team, values.group);
   }
 
   render() {
@@ -75,20 +77,21 @@ class Teams extends React.Component {
 
 Teams.propTypes = {
   teams: PropTypes.array.isRequired,
-  selectedTeam: PropTypes.string.isRequired,
+  selectedTeam: PropTypes.number.isRequired,
   actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
   return {
     teams: state.teams.allTeams,
-    selectedTeam: state.teams.selectedTeam
+    selectedTeam: state.ui.selectedTeam,
+    selectedGroup: state.ui.selectedGroup
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(teamsActions, dispatch)
+    actions: bindActionCreators({...teamsActions, ...uiActions}, dispatch)
   };
 }
 

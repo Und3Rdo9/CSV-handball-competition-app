@@ -17,8 +17,3 @@ export function getAllTeams() {
 export function getTeamsSuccess(teams) {
   return { type: types.GET_TEAMS_SUCCESS, teams };
 }
-
-export function selectTeam(team) {
-
-  return { type: types.SELECT_TEAM, selectedTeam: team };
-}

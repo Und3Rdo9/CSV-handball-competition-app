@@ -18,6 +18,12 @@ export default function uiReducer(state = initialState.ui, action) {
           ...state.requests, [action.label]: currentRequests - 1
         }
       };
+    case types.SELECT_TEAM :
+      return {
+        ...state,
+        selectedTeam: action.selectedTeam,
+        selectedGroup: action.groupId
+      };
 
     default :
       return state;

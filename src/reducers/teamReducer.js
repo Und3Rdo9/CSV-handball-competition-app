@@ -8,11 +8,6 @@ export default function teamReducer(state = initialState.teams, action) {
         ...state,
         allTeams: action.teams
        };
-    case types.SELECT_TEAM :
-      return {
-        ...state,
-        selectedTeam: action.selectedTeam
-      };
     default :
       return state;
   }

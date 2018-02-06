@@ -19,7 +19,7 @@ const TeamList = ({teams, ageCategories, selectedTeam, handleTeamSelect}) => {
 
 TeamList.propTypes = {
   teams: PropTypes.object.isRequired,
-  selectedTeam: PropTypes.string.isRequired,
+  selectedTeam: PropTypes.number.isRequired,
   handleTeamSelect: PropTypes.func.isRequired,
   ageCategories: PropTypes.array.isRequired
 };

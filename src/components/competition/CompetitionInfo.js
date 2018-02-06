@@ -9,32 +9,26 @@ import TeamDetails from './../team/TeamDetails';
 class CompetitionInfo extends React.Component {
   constructor(props, context) {
     super(props, context);
-
-    this.state = {
-
-    };
-
-    this.getTeamSchedule = this.getTeamSchedule.bind(this);
   }
 
   componentWillReceiveProps (nextProps) {
-    if (this.props.selectedTeam !== nextProps.selectedTeam) {
-      const existingSchedule = this.props.schedules[nextProps.selectedTeam];
-      console.log('does exist?', !(!existingSchedule));
+    if (this.props.selectedGroup !== nextProps.selectedGroup) {
+      const existingSchedule = this.props.schedules[nextProps.selectedGroup];
       if (!existingSchedule) {
-        console.log('does not exist, fetching');
-        this.props.actions.getTeamSchedule(nextProps.selectedTeam);
+        this.props.actions.getGroupSchedule(nextProps.selectedGroup);
+        this.props.actions.getGroupResults(nextProps.selectedGroup);
+        this.props.actions.getGroupRanking(nextProps.selectedGroup);
       }
     }
   }
 
-  getTeamSchedule(team, schedules) {
-    return schedules[team] || [];
-  }
-
   render() {
-    const { selectedTeam, schedules, requestsInProgress } = this.props;
-    const selectedTeamSchedule = this.getTeamSchedule(selectedTeam, schedules);
+    const { selectedTeam, selectedGroup, schedules, results, rankings, requestsInProgress } = this.props;
+    const selectedGroupSchedule = schedules[selectedGroup] || [];
+    const selectedGroupResults = results[selectedGroup] || [];
+    const selectedGroupRanking = rankings[selectedGroup] || [];
+
+    console.log(selectedGroupSchedule, selectedGroupResults);
 
     return (
       <div>
@@ -44,7 +38,10 @@ class CompetitionInfo extends React.Component {
         <main className="col-xs-12 col-md-8">
           <TeamDetails
             selectedTeam={selectedTeam}
-            schedule={selectedTeamSchedule}
+            selectedGroup={selectedGroup}
+            schedule={selectedGroupSchedule}
+            results={selectedGroupResults}
+            ranking={selectedGroupRanking}
             requestsInProgress={requestsInProgress}
           />
         </main>
@@ -54,8 +51,11 @@ class CompetitionInfo extends React.Component {
 }
 
 CompetitionInfo.propTypes = {
-  selectedTeam: PropTypes.string.isRequired,
+  selectedTeam: PropTypes.number.isRequired,
+  selectedGroup: PropTypes.number.isRequired,
   schedules: PropTypes.object.isRequired,
+  results: PropTypes.object.isRequired,
+  rankings: PropTypes.object.isRequired,
   requestsInProgress: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 };
@@ -64,8 +64,11 @@ CompetitionInfo.propTypes = {
 function mapStateToProps(state, ownProps) {
   console.log(state);
   return {
-    selectedTeam: state.teams.selectedTeam,
+    selectedTeam: state.ui.selectedTeam,
+    selectedGroup: state.ui.selectedGroup,
     schedules: state.competition.schedules,
+    results: state.competition.results,
+    rankings: state.competition.rankings,
     requestsInProgress: state.ui.requests
   };
 }

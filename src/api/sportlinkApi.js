@@ -21,7 +21,54 @@ class SportlinkApi {
     return new Promise((resolve, reject) => {
       axios.get(`${baseUrl}programma?teamcode=${team}&aantaldagen=365&client_id=${clientId}`)
         .then( response  => {
-          debugger;
+          resolve(response);
+        })
+        .catch( error => {
+          reject(error);
+        });
+    });
+  }
+
+  static getGroupSchedule(groupId) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${baseUrl}poule-programma?poulecode=${groupId}&aantaldagen=365&gebruiklokaleteamgegevens=NEE&client_id=${clientId}`)
+        .then( response  => {
+          resolve(response);
+        })
+        .catch( error => {
+          reject(error);
+        });
+    });
+  }
+
+  static getGroupResults(groupId) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${baseUrl}pouleuitslagen?aantaldagen=365&weekoffset=-52&poulecode=${groupId}&eigenwedstrijden=NEE&gebruiklokaleteamgegevens=NEE&client_id=${clientId}`)
+        .then( response  => {
+          resolve(response);
+        })
+        .catch( error => {
+          reject(error);
+        });
+    });
+  }
+
+  static getGroupRanking(groupId) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${baseUrl}poulestand?poulecode=${groupId}&gebruiklokaleteamgegevens=NEE&client_id=${clientId}`)
+        .then( response  => {
+          resolve(response);
+        })
+        .catch( error => {
+          reject(error);
+        });
+    });
+  }
+
+  static getResults(team) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${baseUrl}uitslagen?teamcode=${team}&weekoffset=-30&aantaldagen=365&gebruiklokaleteamgegevens=NEE&thuis=JA&uit=JA&client_id=${clientId}`)
+        .then( response  => {
           resolve(response);
         })
         .catch( error => {
