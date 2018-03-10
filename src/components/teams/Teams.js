@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-//import TeamListSection from './TeamListSection';
 import TeamList from './TeamList';
 import * as teamsActions from './../../actions/teamsActions';
 import * as uiActions from './../../actions/uiActions';
+import { sortTeams, getAgeCategories } from './../../selectors/selectors';
 
 class Teams extends React.Component {
   constructor(props, context) {
@@ -14,39 +14,7 @@ class Teams extends React.Component {
       selectedTeam: ''
     };
 
-    this.sortTeams = this.sortTeams.bind(this);
-    this.getAgeCategories = this.getAgeCategories.bind(this);
     this.handleTeamSelect = this.handleTeamSelect.bind(this);
-  }
-
-  sortTeams(teams) {
-    if(teams.length > 0) {
-      let sortedTeams = [];
-      sortedTeams = [...teams];
-
-      let teamsSortedByAge = sortedTeams.reduce( (acc, curr) => {
-        if (!(curr.leeftijdscategorie in acc)) { acc[curr.leeftijdscategorie] = {}; }
-        acc[curr.leeftijdscategorie][curr.teamcode] = curr;
-        return acc;
-      }, {});
-
-      return teamsSortedByAge;
-    }
-  }
-
-  getAgeCategories(teams) {
-    if (teams.length) {
-      let ageCategories = [];
-
-      for (let i = 0; i < teams.length; i++) {
-        if (ageCategories.indexOf(teams[i].leeftijdscategorie) < 0) {
-          ageCategories.push(teams[i].leeftijdscategorie);
-        }
-      }
-
-      return ageCategories;
-    }
-
   }
 
   handleTeamSelect(changeEvent) {
@@ -55,20 +23,17 @@ class Teams extends React.Component {
   }
 
   render() {
-    const { teams, selectedTeam } = this.props;
-    const sortedTeams = this.sortTeams(teams);
-    const ageCategories = this.getAgeCategories(teams);
+    const { teams, ageCategories, selectedTeam } = this.props;
 
     return (
       <div className="team-list panel panel-default">
         <div className="panel-heading">Selecteer een team:</div>
-        {teams.length && <TeamList
-          teams={sortedTeams}
+        {Object.keys(teams).length && <TeamList
+          teams={teams}
           selectedTeam={selectedTeam}
           handleTeamSelect={this.handleTeamSelect}
           ageCategories={ageCategories}
         />
-
         }
       </div>
     );
@@ -76,14 +41,16 @@ class Teams extends React.Component {
 }
 
 Teams.propTypes = {
-  teams: PropTypes.array.isRequired,
+  teams: PropTypes.object.isRequired,
+  ageCategories: PropTypes.array.isRequired,
   selectedTeam: PropTypes.number.isRequired,
   actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    teams: state.teams.allTeams,
+    teams: sortTeams(state.teams.allTeams),
+    ageCategories: getAgeCategories(state.teams.allTeams),
     selectedTeam: state.ui.selectedTeam,
     selectedGroup: state.ui.selectedGroup
   };

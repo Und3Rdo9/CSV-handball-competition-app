@@ -5,6 +5,7 @@ import TeamRanking from './TeamRanking';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
+
 const TeamDetails = ({ selectedTeam, selectedGroup, schedule, results, ranking, requestsInProgress }) => {
   if (!selectedGroup > 0) {
     return (

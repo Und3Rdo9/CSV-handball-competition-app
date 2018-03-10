@@ -31,8 +31,6 @@ const TeamResults = ({ results, loading }) => {
       <p>Geen uitslagen gevonden.</p>
     );
   }
-
-
 };
 
 TeamResults.propTypes = {
