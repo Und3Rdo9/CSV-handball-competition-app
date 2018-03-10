@@ -6,7 +6,7 @@ import * as competitionActions from './../../actions/competitionActions';
 import Teams from './../teams/Teams';
 import TeamDetails from './../team/TeamDetails';
 
-class CompetitionInfo extends React.Component {
+export class CompetitionInfo extends React.Component {
   constructor(props, context) {
     super(props, context);
   }
@@ -27,8 +27,6 @@ class CompetitionInfo extends React.Component {
     const selectedGroupSchedule = schedules[selectedGroup] || [];
     const selectedGroupResults = results[selectedGroup] || [];
     const selectedGroupRanking = rankings[selectedGroup] || [];
-
-    console.log(selectedGroupSchedule, selectedGroupResults);
 
     return (
       <div>
@@ -60,9 +58,7 @@ CompetitionInfo.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
-
 function mapStateToProps(state, ownProps) {
-  console.log(state);
   return {
     selectedTeam: state.ui.selectedTeam,
     selectedGroup: state.ui.selectedGroup,
