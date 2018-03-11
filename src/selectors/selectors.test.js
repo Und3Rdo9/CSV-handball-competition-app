@@ -1,28 +1,29 @@
 import expect from 'expect';
-import { sortTeams } from './selectors';
+import { sortTeams, getAgeCategories } from './selectors';
+
+const teams = [
+  {
+    "teamcode" : 993,
+    "teamnaam" : "C.S.V. Handbal DS1",
+    "leeftijdscategorie" : "Senioren (D)"
+  }, {
+    "teamcode" : 2302,
+    "teamnaam" : "C.S.V. Handbal DS2",
+    "leeftijdscategorie" : "Senioren (D)"
+  },
+  {
+    "teamcode" : 2306,
+    "teamnaam" : "C.S.V. Handbal HS1",
+    "leeftijdscategorie" : "Senioren (H)"
+  }, {
+    "teamcode" : 1001,
+    "teamnaam" : "C.S.V. Handbal HS2",
+    "leeftijdscategorie" : "Senioren (H)"
+  },
+];
 
 describe('sorting teams', () => {
   it('should return sorted team data for use in a selection team list', () => {
-    const teams = [
-      {
-        "teamcode" : 993,
-        "teamnaam" : "C.S.V. Handbal DS1",
-        "leeftijdscategorie" : "Senioren (D)"
-      }, {
-        "teamcode" : 2302,
-        "teamnaam" : "C.S.V. Handbal DS2",
-        "leeftijdscategorie" : "Senioren (D)"
-      },
-      {
-        "teamcode" : 2306,
-        "teamnaam" : "C.S.V. Handbal HS1",
-        "leeftijdscategorie" : "Senioren (H)"
-      }, {
-        "teamcode" : 1001,
-        "teamnaam" : "C.S.V. Handbal HS2",
-        "leeftijdscategorie" : "Senioren (H)"
-      },
-    ];
 
     const expected = {
       "Senioren (D)" : {
@@ -58,5 +59,17 @@ describe('sorting teams', () => {
     }
 
     expect(sortTeams(teams)).toEqual(expected);
+
+  });
+});
+
+describe('extracting all team age categories', () => {
+  it('should return an array of age categories', () => {
+    const expected = [
+      "Senioren (D)",
+      "Senioren (H)"
+    ];
+
+    expect(getAgeCategories(teams)).toEqual(expected);
   });
 });
