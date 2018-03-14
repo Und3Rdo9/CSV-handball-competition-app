@@ -35,7 +35,11 @@ describe('Asynchronous Team Actions', () => {
     //intercept the API call
     nock('https://data.sportlink.com')
       .log(console.log)
-      .get('/teams?teamsoort=bond&gebruiklokaleteamgegevens=NEE&client_id=WuJeuY15Qe')
+      .get(function(uri) {
+        // match endpoint with or without query string params
+        // as their usage is subject to change
+        return uri.indexOf('/teams') >= 0;
+      })
       .reply(200, DUMMYTEAMS);
   });
 

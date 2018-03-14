@@ -1,11 +1,14 @@
 import axios from 'axios';
+import httpAdapter from 'axios/lib/adapters/http'
 
 const baseUrl = 'https://data.sportlink.com/';
-const clientId =  '';
+const clientId =  'WuJeuY15Qe';
+axios.defaults.adapter = httpAdapter;
 
 class SportlinkApi {
 
   static getAllTeams() {
+
     return new Promise((resolve, reject) => {
       axios.get(`${baseUrl}teams?teamsoort=bond&gebruiklokaleteamgegevens=NEE&client_id=${clientId}`)
         .then( response  => {
