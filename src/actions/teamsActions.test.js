@@ -38,7 +38,7 @@ describe('Asynchronous Team Actions', () => {
     //   .reply(200, { body: DUMMYTEAMS });
   });
 
-  it('test should create START_AJAX_CALL and GET_TEAMS_SUCCESS when done', (done) => {
+  it('test should create START_AJAX_CALL and GET_TEAMS_SUCCESS & END_AJAX_CALL when done', (done) => {
 
     const expectedActions = [
       { type: types.START_AJAX_CALL, label:  'teams' },
