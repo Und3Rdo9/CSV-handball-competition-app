@@ -1,5 +1,5 @@
 import axios from 'axios';
-import httpAdapter from 'axios/lib/adapters/http'
+import httpAdapter from 'axios/lib/adapters/http';
 
 const baseUrl = 'https://data.sportlink.com/';
 const clientId =  'WuJeuY15Qe';

@@ -34,7 +34,6 @@ describe('Asynchronous Team Actions', () => {
   beforeEach(() => {
     //intercept the API call
     nock('https://data.sportlink.com')
-      .log(console.log)
       .get(function(uri) {
         // match endpoint with or without query string params
         // as their usage is subject to change
@@ -56,7 +55,7 @@ describe('Asynchronous Team Actions', () => {
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
         done();
-      })
+      });
       // .catch((e) => {
       //   jsonfile.writeFile('/tmp/error.json', JSON.stringify(e, null, 4), {}, (er) => {
       //     if(er) {
@@ -68,4 +67,4 @@ describe('Asynchronous Team Actions', () => {
       //   });
       // });
   });
-})
+});

@@ -19,7 +19,7 @@ const teams = [
     "teamcode" : 1001,
     "teamnaam" : "C.S.V. Handbal HS2",
     "leeftijdscategorie" : "Senioren (H)"
-  },
+  }
 ];
 
 describe('sorting teams', () => {
@@ -56,7 +56,7 @@ describe('sorting teams', () => {
 
         }
       }
-    }
+    };
 
     expect(sortTeams(teams)).toEqual(expected);
 

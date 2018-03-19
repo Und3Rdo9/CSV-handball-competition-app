@@ -12,7 +12,7 @@ describe('Competition Info Component',  () => {
       results: {},
       rankings: {},
       requestsInProgress: {},
-      actions: {},
+      actions: {}
     };
 
     const wrapper = shallow(<CompetitionInfo {...props} />);
