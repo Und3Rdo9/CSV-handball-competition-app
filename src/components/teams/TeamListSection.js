@@ -3,8 +3,8 @@ import TeamListItem from './TeamListItem';
 
 const TeamListSection = ({category, teams, selectedTeam, handleTeamSelect}) => {
   return (
-    <li className="team-list__section list-group-item">
-        <h4 className="list-group-item-heading">{category}</h4>
+    <li className="team-list__section">
+        <h4 className="team-list__heading">{category}</h4>
         {Object.keys(teams[category]).map( (key, index) =>
           <TeamListItem
             team={teams[category][key]}

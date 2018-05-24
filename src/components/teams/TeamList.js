@@ -3,7 +3,7 @@ import TeamListSection from './TeamListSection';
 
 const TeamList = ({teams, ageCategories, selectedTeam, handleTeamSelect}) => {
   return (
-    <ul className="list-group">
+    <ul className="team__list-group">
       {ageCategories.map( (cat, index) =>
         <TeamListSection
           key={index}

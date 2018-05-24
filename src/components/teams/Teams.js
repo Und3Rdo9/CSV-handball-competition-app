@@ -26,8 +26,8 @@ class Teams extends React.Component {
     const { teams, ageCategories, selectedTeam } = this.props;
 
     return (
-      <div className="team-list panel panel-default">
-        <div className="panel-heading">Selecteer een team:</div>
+      <div className="team-list panel">
+        <div className="panel__heading">Selecteer een team:</div>
         {Object.keys(teams).length && <TeamList
           teams={teams}
           selectedTeam={selectedTeam}

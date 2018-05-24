@@ -29,11 +29,11 @@ export class CompetitionInfo extends React.Component {
     const selectedGroupRanking = rankings[selectedGroup] || [];
 
     return (
-      <div>
-        <aside className="col-xs-12 col-md-4">
+      <div className="row">
+        <aside className="columns small-12 medium-4">
           <Teams />
         </aside>
-        <main className="col-xs-12 col-md-8">
+        <main className="columns small-12 medium-8">
           <TeamDetails
             selectedTeam={selectedTeam}
             selectedGroup={selectedGroup}

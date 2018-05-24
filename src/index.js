@@ -8,8 +8,6 @@ import { getAllTeams } from './actions/teamsActions';
 
 import App from './components/App';
 
-import './styles/styles.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import "../node_modules/loaders.css/loaders.min.css";
 
 const store = configureStore();
