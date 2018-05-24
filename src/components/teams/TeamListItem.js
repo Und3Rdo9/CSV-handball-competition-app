@@ -4,7 +4,7 @@ const TeamListItem = ( {team, selectedTeam, handleTeamSelect} ) => {
   const value = JSON.stringify({team: team.teamcode, group: team.poulecode});
   return (
     <div className="team-list__option radio">
-      <label>
+      <label className="radio__label">
         <input
           type="radio"
           name="optionsRadios"
@@ -12,8 +12,9 @@ const TeamListItem = ( {team, selectedTeam, handleTeamSelect} ) => {
           value={value}
           onChange={handleTeamSelect}
           checked={selectedTeam === team.teamcode}
+          className="radio__input"
         />
-          {team.teamnaam} &mdash; {team.spelsoort}
+          <span className="radio__text">{team.teamnaam} &mdash; {team.spelsoort}</span>
       </label>
     </div>
   );

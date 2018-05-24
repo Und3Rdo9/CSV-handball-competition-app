@@ -36,7 +36,7 @@ const TeamDetails = ({ selectedTeam, selectedGroup, schedule, results, ranking, 
         </TabList>
 
         <TabPanel>
-          <h2>Programma</h2>
+          <h2 className="react-tabs__panel-heading">Programma</h2>
           <TeamSchedule
             schedule={schedule}
             loading={requestsInProgress.schedules}
@@ -44,7 +44,7 @@ const TeamDetails = ({ selectedTeam, selectedGroup, schedule, results, ranking, 
         </TabPanel>
 
         <TabPanel>
-          <h2>Uitslagen</h2>
+          <h2 className="react-tabs__panel-heading">Uitslagen</h2>
           <TeamResults
             results={results}
             loading={requestsInProgress.results}
@@ -52,7 +52,7 @@ const TeamDetails = ({ selectedTeam, selectedGroup, schedule, results, ranking, 
         </TabPanel>
 
         <TabPanel>
-          <h2>Stand</h2>
+          <h2 className="react-tabs__panel-heading">Stand</h2>
           <TeamRanking
             ranking={ranking}
             loading={requestsInProgress.rankings}

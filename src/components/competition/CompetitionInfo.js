@@ -9,6 +9,12 @@ import TeamDetails from './../team/TeamDetails';
 export class CompetitionInfo extends React.Component {
   constructor(props, context) {
     super(props, context);
+
+    this.state = {
+      selectionOpen: true
+    };
+
+    this.toggleTeamSelection = this.toggleTeamSelection.bind(this);
   }
 
   componentWillReceiveProps (nextProps) {
@@ -22,6 +28,12 @@ export class CompetitionInfo extends React.Component {
     }
   }
 
+  toggleTeamSelection() {
+    this.setState({
+      selectionOpen: !this.state.selectionOpen
+    });
+  }
+
   render() {
     const { selectedTeam, selectedGroup, schedules, results, rankings, requestsInProgress } = this.props;
     const selectedGroupSchedule = schedules[selectedGroup] || [];
@@ -29,11 +41,11 @@ export class CompetitionInfo extends React.Component {
     const selectedGroupRanking = rankings[selectedGroup] || [];
 
     return (
-      <div className="row">
-        <aside className="columns small-12 medium-4">
+      <div className="competition-info">
+        <aside className={'competition-info__team-selection ' + (this.state.selectionOpen ? 'competition-info__team-selection--open' : '')}>
           <Teams />
         </aside>
-        <main className="columns small-12 medium-8">
+        <main className="competition-info__team-details">
           <TeamDetails
             selectedTeam={selectedTeam}
             selectedGroup={selectedGroup}
@@ -43,6 +55,9 @@ export class CompetitionInfo extends React.Component {
             requestsInProgress={requestsInProgress}
           />
         </main>
+        <button className="competition-info__toggle-selection" onClick={this.toggleTeamSelection}>
+          <span className="sr-only">Teamselectie openen</span>
+        </button>
       </div>
     );
   }
