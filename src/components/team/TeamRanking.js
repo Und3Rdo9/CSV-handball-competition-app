@@ -3,13 +3,8 @@ import Loader from 'react-loaders';
 
 const TeamRanking = ({ ranking, loading }) => {
   if(loading > 0 ) {
-    const style = {
-      backgroundColor: 'blue',
-      margin: '0 auto',
-      height: '100px'
-    };
     return (
-      <Loader active style={style} />
+      <Loader active color="#2041A3" />
     );
   }
   if(ranking.length && loading <= 0) {
@@ -26,7 +21,7 @@ const TeamRanking = ({ ranking, loading }) => {
           </thead>
           <tbody>
             {ranking.map( (team) =>
-              <tr key={team.teamcode} className={(team.eigenteam === "true") ? 'highlight' : ''}>
+              <tr key={team.clubrelatiecode} className={(team.eigenteam === "true") ? 'highlight' : ''}>
                 <td data-title="Positie">{team.positie}</td>
                 <td data-title="Team">{team.teamnaam}</td>
                 <td data-title="Gespeeld">{team.gespeeldewedstrijden}</td>

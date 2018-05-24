@@ -10,18 +10,13 @@ const isOwnTeam = (id) => {
 
 const TeamResults = ({ results, loading }) => {
   if(loading > 0 ) {
-    const style = {
-      backgroundColor: 'blue',
-      margin: '0 auto',
-      height: '100px'
-    };
     return (
-      <Loader active style={style} />
+      <Loader active color="#2041A3" />
     );
   }
   if(results.length && loading <= 0) {
     return (
-      <div class="panel-list">
+      <div className="panel-list">
         {results.map( (match) =>
           <div className="panel" key={match.wedstrijdnummer}>
             <div className="panel__heading">{format(match.wedstrijddatum, 'dddd D MMMM YYYY', {locale: dutchLocale})}
@@ -29,29 +24,29 @@ const TeamResults = ({ results, loading }) => {
             <div className="panel__body">
               <div className="finished-match">
                 <div className="finished-match__home-team" data-own-team={isOwnTeam(match.thuisteamclubrelatiecode
-)}>
-                  {match.thuisteam}
-                </div>
-                <div className="finished-match__result">
-{match.uitslag}
-                </div>
-                <div className="finished-match__away-team" data-own-team={isOwnTeam(match.uitteamclubrelatiecode
-)}>
-{match.uitteam}
-                </div>
+                )}>
+                {match.thuisteam}
               </div>
+              <div className="finished-match__result">
+                {match.uitslag}
+              </div>
+              <div className="finished-match__away-team" data-own-team={isOwnTeam(match.uitteamclubrelatiecode
+              )}>
+              {match.uitteam}
             </div>
-
           </div>
-        )}
+        </div>
+
       </div>
-    );
-  }
-  else {
-    return (
-      <p>Geen uitslagen gevonden.</p>
-    );
-  }
+    )}
+  </div>
+);
+}
+else {
+  return (
+    <p>Geen uitslagen gevonden.</p>
+  );
+}
 };
 
 TeamResults.propTypes = {

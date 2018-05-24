@@ -5,13 +5,8 @@ import dutchLocale from 'date-fns/locale/nl';
 
 const TeamSchedule = ({ schedule, loading }) => {
   if(loading > 0 ) {
-    const style = {
-      backgroundColor: 'blue',
-      margin: '0 auto',
-      height: '100px'
-    };
     return (
-      <Loader active style={style} />
+      <Loader active color="#2041A3" />
     );
   }
   if(schedule.length && loading <= 0) {

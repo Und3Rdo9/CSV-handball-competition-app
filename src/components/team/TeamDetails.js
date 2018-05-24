@@ -5,6 +5,9 @@ import TeamRanking from './TeamRanking';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
+const scheduleIcon = '<use xlink:href="#schedule"></use>';
+const resultsIcon = '<use xlink:href="#results"></use>';
+const rankingIcon = '<use xlink:href="#ranking"></use>';
 
 const TeamDetails = ({ selectedTeam, selectedGroup, schedule, results, ranking, requestsInProgress }) => {
   if (!selectedGroup > 0) {
@@ -16,9 +19,20 @@ const TeamDetails = ({ selectedTeam, selectedGroup, schedule, results, ranking, 
     return (
       <Tabs >
         <TabList>
-          <Tab>Programma</Tab>
-          <Tab>Uitslagen</Tab>
-          <Tab>Stand</Tab>
+          <Tab>
+            <svg className="tab__icon" dangerouslySetInnerHTML={{__html: scheduleIcon}}></svg>
+            <span className="tab__heading">Programma</span>
+          </Tab>
+          <Tab>
+            <svg className="tab__icon" dangerouslySetInnerHTML={{__html: resultsIcon}}></svg>
+            <span className="tab__heading">Uitslagen</span>
+
+          </Tab>
+          <Tab>
+            <svg className="tab__icon" dangerouslySetInnerHTML={{__html: rankingIcon}}></svg>
+            <span className="tab__heading">Stand</span>
+
+          </Tab>
         </TabList>
 
         <TabPanel>
