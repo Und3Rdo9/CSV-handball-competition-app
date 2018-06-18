@@ -17,7 +17,7 @@ export class CompetitionInfo extends React.Component {
     this.toggleTeamSelection = this.toggleTeamSelection.bind(this);
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.selectedGroup !== nextProps.selectedGroup) {
       const existingSchedule = this.props.schedules[nextProps.selectedGroup];
       if (!existingSchedule) {
@@ -35,15 +35,35 @@ export class CompetitionInfo extends React.Component {
   }
 
   render() {
-    const { selectedTeam, selectedGroup, schedules, results, rankings, requestsInProgress } = this.props;
+    const {
+      selectedTeam,
+      selectedGroup,
+      schedules,
+      results,
+      rankings,
+      requestsInProgress
+    } = this.props;
     const selectedGroupSchedule = schedules[selectedGroup] || [];
     const selectedGroupResults = results[selectedGroup] || [];
     const selectedGroupRanking = rankings[selectedGroup] || [];
 
     return (
       <div className="competition-info">
-        <aside className={'competition-info__team-selection ' + (this.state.selectionOpen ? 'competition-info__team-selection--open' : '')}>
+        <aside
+          className={
+            'competition-info__team-selection ' +
+            (this.state.selectionOpen
+              ? 'competition-info__team-selection--open'
+              : '')
+          }
+        >
           <Teams />
+          <button
+            className="competition-info__toggle-selection"
+            onClick={this.toggleTeamSelection}
+          >
+            <span className="sr-only">Teamselectie openen</span>
+          </button>
         </aside>
         <main className="competition-info__team-details">
           <TeamDetails
@@ -55,9 +75,6 @@ export class CompetitionInfo extends React.Component {
             requestsInProgress={requestsInProgress}
           />
         </main>
-        <button className="competition-info__toggle-selection" onClick={this.toggleTeamSelection}>
-          <span className="sr-only">Teamselectie openen</span>
-        </button>
       </div>
     );
   }
